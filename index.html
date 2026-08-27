@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WoodCraft — Premium Wooden Product</title>
+
+<meta name="description" content="Premium handcrafted wooden product. Order directly through WhatsApp.">
+
+<style>
+
+/* =========================
+   BASIC RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f3ed;
+    color: #2d2118;
+    line-height: 1.6;
+}
+
+/* =========================
+   VARIABLES
+========================= */
+
+:root {
+    --wood-dark: #3b2417;
+    --wood: #70452c;
+    --wood-light: #a66a3f;
+    --cream: #f7f3ed;
+    --white: #ffffff;
+    --gold: #c9984a;
+    --green: #20b858;
+    --shadow: 0 15px 40px rgba(45, 30, 20, 0.15);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(59, 36, 23, 0.97);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 15px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+.header-btn {
+    text-decoration: none;
+    color: white;
+    border: 1px solid rgba(255,255,255,.3);
+    padding: 9px 18px;
+    border-radius: 30px;
+    font-size: 14px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 88vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 50px;
+    padding: 70px 7%;
+    background:
+        radial-gradient(circle at 80% 30%, rgba(201,152,74,.18), transparent 30%),
+        linear-gradient(135deg, #f8f3eb, #eadcc9);
+}
+
+.hero-text {
+    max-width: 600px;
+}
+
+.badge {
+    display: inline-block;
+    background: #3b2417;
+    color: #fff;
+    padding: 7px 15px;
+    border-radius: 30px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 1.02;
+    margin-bottom: 25px;
+    letter-spacing: -2px;
+}
+
+.hero h1 span {
+    color: var(--wood-light);
+}
+
+.hero p {
+    font-size: 18px;
+    color: #665548;
+    max-width: 520px;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+    border: none;
+    padding: 15px 27px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: .25s;
+}
+
+.primary-btn {
+    background: var(--wood-dark);
+    color: white;
+    box-shadow: 0 10px 25px rgba(59,36,23,.25);
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    background: #542f1d;
+}
+
+.secondary-btn {
+    border: 1px solid #bca991;
+    color: var(--wood-dark);
+    background: rgba(255,255,255,.4);
+}
+
+.secondary-btn:hover {
+    background: white;
+}
+
+/* =========================
+   HERO PRODUCT IMAGE
+========================= */
+
+.hero-product {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.product-card {
+    width: min(520px, 100%);
+    background: rgba(255,255,255,.5);
+    padding: 20px;
+    border-radius: 35px;
+    box-shadow: var(--shadow);
+    transform: rotate(1deg);
+}
+
+.product-card img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    border-radius: 25px;
+    display: block;
+}
+
+.floating-price {
+    position: absolute;
+    right: -15px;
+    bottom: 35px;
+    background: var(--wood-dark);
+    color: white;
+    padding: 17px 23px;
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+.floating-price small {
+    display: block;
+    opacity: .7;
+    font-size: 11px;
+}
+
+.floating-price strong {
+    font-size: 23px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+section {
+    padding: 90px 7%;
+}
+
+.section-title {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 50px;
+}
+
+.section-title h2 {
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.section-title p {
+    color: #75665a;
+}
+
+/* =========================
+   PRODUCT AREA
+========================= */
+
+.product-section {
+    background: white;
+}
+
+.product-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 60px;
+    align-items: start;
+}
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery {
+    position: sticky;
+    top: 100px;
+}
+
+.main-image {
+    width: 100%;
+    height: 570px;
+    object-fit: cover;
+    border-radius: 25px;
+    box-shadow: var(--shadow);
+    cursor: zoom-in;
+}
+
+.thumbnails {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.thumb {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: .2s;
+}
+
+.thumb:hover,
+.thumb.active {
+    border-color: var(--wood-light);
+}
+
+/* =========================
+   PRODUCT DETAILS
+========================= */
+
+.product-details h2 {
+    font-size: 42px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+}
+
+.stars {
+    color: var(--gold);
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.description {
+    color: #6e6055;
+    margin-bottom: 25px;
+}
+
+.features {
+    display: grid;
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.feature {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 13px;
+    border-radius: 12px;
+    background: #f8f5f1;
+}
+
+.feature-icon {
+    font-size: 21px;
+}
+
+/* =========================
+   PRICE BOX
+========================= */
+
+.price-box {
+    background: #f5eee5;
+    border-radius: 20px;
+    padding: 22px;
+    margin: 25px 0;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 9px 0;
+    color: #65564b;
+}
+
+.price-row.total {
+    border-top: 1px solid #d7c5b2;
+    padding-top: 15px;
+    margin-top: 15px;
+    color: var(--wood-dark);
+    font-size: 21px;
+    font-weight: 800;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.order-box {
+    background: white;
+    border: 1px solid #e5dbcf;
+    padding: 25px;
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(50,30,15,.08);
+}
+
+.order-box h3 {
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.order-box .subtext {
+    font-size: 13px;
+    color: #817469;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    border: 1px solid #ddd1c4;
+    background: #fcfaf8;
+    padding: 13px 14px;
+    border-radius: 10px;
+    outline: none;
+    font-size: 15px;
+    font-family: inherit;
+    transition: .2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--wood-light);
+    box-shadow: 0 0 0 3px rgba(166,106,63,.1);
+}
+
+.form-group textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.whatsapp-btn {
+    width: 100%;
+    border: none;
+    background: var(--green);
+    color: white;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .25s;
+    margin-top: 8px;
+}
+
+.whatsapp-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(.95);
+}
+
+.whatsapp-btn span {
+    margin-right: 7px;
+}
+
+/* =========================
+   TRUST SECTION
+========================= */
+
+.trust {
+    background: var(--wood-dark);
+    color: white;
+}
+
+.trust-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.trust-item {
+    text-align: center;
+    padding: 30px 20px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 20px;
+}
+
+.trust-item .icon {
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+.trust-item h3 {
+    margin-bottom: 7px;
+}
+
+.trust-item p {
+    opacity: .7;
+    font-size: 14px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #24150e;
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+footer p {
+    opacity: .6;
+    font-size: 13px;
+}
+
+/* =========================
+   IMAGE LIGHTBOX
+========================= */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.92);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding: 30px;
+}
+
+.lightbox.show {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 95%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.close-lightbox {
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding-top: 50px;
+    }
+
+    .hero-product {
+        order: -1;
+    }
+
+    .product-card img {
+        height: 420px;
+    }
+
+    .product-container {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery {
+        position: static;
+    }
+
+    .main-image {
+        height: 480px;
+    }
+
+    .trust-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 13px 5%;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .header-btn {
+        padding: 8px 13px;
+    }
+
+    .hero {
+        padding: 45px 5%;
+        min-height: auto;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    section {
+        padding: 65px 5%;
+    }
+
+    .section-title h2 {
+        font-size: 32px;
+    }
+
+    .product-details h2 {
+        font-size: 34px;
+    }
+
+    .main-image {
+        height: 360px;
+    }
+
+    .thumb {
+        height: 70px;
+    }
+
+    .two-column {
+        grid-template-columns: 1fr;
+    }
+
+    .floating-price {
+        right: 0;
+        bottom: 20px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="logo">
+        WOOD<span>CRAFT</span>
+    </div>
+
+    <a href="#order" class="header-btn">
+        Order Now
+    </a>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <div class="badge">
+            HANDCRAFTED • PREMIUM WOOD
+        </div>
+
+        <h1>
+            Made from wood.<br>
+            <span>Made to last.</span>
+        </h1>
+
+        <p>
+            Discover our beautifully handcrafted wooden product,
+            made with attention to detail and designed to bring
+            natural warmth into your everyday life.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#product" class="primary-btn">
+                View Product →
+            </a>
+
+            <a href="#order" class="secondary-btn">
+                Buy Now
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-product">
+
+        <div class="product-card">
+
+            <!-- CHANGE THIS IMAGE -->
+            <img
+                src="images/product1.jpg"
+                alt="Premium Wooden Product"
+            >
+
+        </div>
+
+        <div class="floating-price">
+
+            <small>STARTING FROM</small>
+
+            <strong>₹1,499</strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PRODUCT
+========================= -->
+
+<section class="product-section" id="product">
+
+    <div class="section-title">
+
+        <h2>Our Featured Product</h2>
+
+        <p>
+            One product. Carefully crafted.
+            Designed for people who appreciate natural wood.
+        </p>
+
+    </div>
+
+
+    <div class="product-container">
+
+
+        <!-- GALLERY -->
+
+        <div class="gallery">
+
+            <!-- MAIN IMAGE -->
+
+            <img
+                id="mainProductImage"
+                class="main-image"
+                src="images/product1.jpg"
+                alt="Wooden Product"
+                onclick="openLightbox()"
+            >
+
+
+            <!-- THUMBNAILS -->
+
+            <div class="thumbnails">
+
+                <img
+                    class="thumb active"
+                    src="images/product1.jpg"
+                    onclick="changeImage(this)"
+                    alt="Product image 1"
+                >
+
+                <img
+                    class="thumb"
+                    src="images/product2.jpg"
+                    onclick="changeImage(this)"
+                    alt="Product image 2"
+                >
+
+                <img
+                    class="thumb"
+                    src="images/product3.jpg"
+                    onclick="changeImage(this)"
+                    alt="Product image 3"
+                >
+
+                <img
+                    class="thumb"
+                    src="images/product4.jpg"
+                    onclick="changeImage(this)"
+                    alt="Product image 4"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT INFORMATION -->
+
+        <div class="product-details">
+
+            <h2>
+                Premium Handmade Wooden Product
+            </h2>
+
+            <div class="stars">
+                ★★★★★
+                <span style="font-size:13px;color:#76695e;">
+                    Loved by our customers
+                </span>
+            </div>
+
+            <p class="description">
+
+                A beautiful handcrafted wooden product made
+                from carefully selected wood. Each piece has
+                its own natural grain and character.
+
+            </p>
+
+
+            <!-- FEATURES -->
+
+            <div class="features">
+
+                <div class="feature">
+                    <div class="feature-icon">🪵</div>
+                    <div>
+                        <strong>Natural Wood</strong><br>
+                        <small>Beautiful natural grain</small>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">✋</div>
+                    <div>
+                        <strong>Handcrafted</strong><br>
+                        <small>Made with attention to detail</small>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📦</div>
+                    <div>
+                        <strong>Safe Packaging</strong><br>
+                        <small>Carefully packed for delivery</small>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 PRICE
+            ========================= -->
+
+            <div class="price-box">
+
+                <div class="price-row">
+
+                    <span>Selling Price</span>
+
+                    <strong>
+                        ₹<span id="productPrice">1499</span>
+                    </strong>
+
+                </div>
+
+
+                <div class="price-row">
+
+                    <span>Delivery Charge</span>
+
+                    <strong>
+                        ₹<span id="deliveryCharge">100</span>
+                    </strong>
+
+                </div>
+
+
+                <div class="price-row total">
+
+                    <span>Total Amount</span>
+
+                    <strong>
+                        ₹<span id="totalPrice">1599</span>
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 ORDER FORM
+            ========================= -->
+
+            <div class="order-box" id="order">
+
+                <h3>
+                    Place Your Order
+                </h3>
+
+                <p class="subtext">
+                    Enter your details and continue through WhatsApp.
+                </p>
+
+
+                <form id="orderForm">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Customer Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customerName"
+                            placeholder="Your full name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Shipping Address *
+                        </label>
+
+                        <textarea
+                            id="shippingAddress"
+                            placeholder="House name / House number, street, locality"
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="two-column">
+
+                        <div class="form-group">
+
+                            <label>
+                                Post Office *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="postOffice"
+                                placeholder="Post Office"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                PIN Code *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="pinCode"
+                                placeholder="PIN Code"
+                                maxlength="6"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            District *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="district"
+                            placeholder="District"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="whatsapp-btn"
+                    >
+
+                        <span>💬</span>
+                        BUY NOW — ORDER ON WHATSAPP
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TRUST
+========================= -->
+
+<section class="trust">
+
+    <div class="section-title">
+
+        <h2>
+            Why Buy From Us?
+        </h2>
+
+        <p style="color:rgba(255,255,255,.65);">
+            Simple ordering. Personal service.
+            Carefully made products.
+        </p>
+
+    </div>
+
+
+    <div class="trust-grid">
+
+        <div class="trust-item">
+
+            <div class="icon">🪵</div>
+
+            <h3>
+                Premium Wood
+            </h3>
+
+            <p>
+                Carefully selected materials
+                for a beautiful natural finish.
+            </p>
+
+        </div>
+
+
+        <div class="trust-item">
+
+            <div class="icon">📦</div>
+
+            <h3>
+                Secure Delivery
+            </h3>
+
+            <p>
+                Your order is safely packed
+                before being shipped.
+            </p>
+
+        </div>
+
+
+        <div class="trust-item">
+
+            <div class="icon">💬</div>
+
+            <h3>
+                Direct Support
+            </h3>
+
+            <p>
+                Contact us directly through
+                WhatsApp for your order.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="logo">
+        WOOD<span>CRAFT</span>
+    </div>
+
+    <p style="margin-top:10px;">
+        Handcrafted with care • © 2026 WoodCraft
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     LIGHTBOX
+========================= -->
+
+<div
+    class="lightbox"
+    id="lightbox"
+    onclick="closeLightbox()"
+>
+
+    <div
+        class="close-lightbox"
+        onclick="closeLightbox()"
+    >
+        ×
+    </div>
+
+    <img
+        id="lightboxImage"
+        src=""
+        alt="Product Preview"
+    >
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   PRODUCT SETTINGS
+========================================== */
+
+/*
+   CHANGE THESE VALUES
+*/
+
+const PRODUCT_NAME =
+    "Premium Handmade Wooden Product";
+
+const PRODUCT_PRICE =
+    1499;
+
+const DELIVERY_CHARGE =
+    100;
+
+
+/*
+   IMPORTANT:
+   Replace this with YOUR WhatsApp number.
+
+   Country code required.
+
+   India example:
+   919876543210
+
+   DO NOT put + sign.
+*/
+
+const WHATSAPP_NUMBER =
+    "919876543210";
+
+
+/* ==========================================
+   PRICE CALCULATION
+========================================== */
+
+const total =
+    PRODUCT_PRICE + DELIVERY_CHARGE;
+
+document.getElementById("productPrice")
+    .textContent = PRODUCT_PRICE;
+
+document.getElementById("deliveryCharge")
+    .textContent = DELIVERY_CHARGE;
+
+document.getElementById("totalPrice")
+    .textContent = total;
+
+
+/* ==========================================
+   IMAGE GALLERY
+========================================== */
+
+function changeImage(element) {
+
+    const mainImage =
+        document.getElementById("mainProductImage");
+
+    mainImage.src =
+        element.src;
+
+
+    const thumbnails =
+        document.querySelectorAll(".thumb");
+
+    thumbnails.forEach(function(thumb) {
+
+        thumb.classList.remove("active");
+
+    });
+
+
+    element.classList.add("active");
+}
+
+
+/* ==========================================
+   LIGHTBOX
+========================================== */
+
+function openLightbox() {
+
+    const mainImage =
+        document.getElementById("mainProductImage");
+
+    const lightbox =
+        document.getElementById("lightbox");
+
+    const lightboxImage =
+        document.getElementById("lightboxImage");
+
+
+    lightboxImage.src =
+        mainImage.src;
+
+    lightbox.classList.add("show");
+}
+
+
+function closeLightbox() {
+
+    document
+        .getElementById("lightbox")
+        .classList.remove("show");
+
+}
+
+
+/* ==========================================
+   WHATSAPP ORDER
+========================================== */
+
+document
+    .getElementById("orderForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        /*
+           GET CUSTOMER DETAILS
+        */
+
+        const customerName =
+            document
+            .getElementById("customerName")
+            .value
+            .trim();
+
+
+        const shippingAddress =
+            document
+            .getElementById("shippingAddress")
+            .value
+            .trim();
+
+
+        const postOffice =
+            document
+            .getElementById("postOffice")
+            .value
+            .trim();
+
+
+        const pinCode =
+            document
+            .getElementById("pinCode")
+            .value
+            .trim();
+
+
+        const district =
+            document
+            .getElementById("district")
+            .value
+            .trim();
+
+
+        /*
+           CREATE WHATSAPP MESSAGE
+        */
+
+        const message =
+
+`🛒 *NEW PRODUCT ORDER*
+
+━━━━━━━━━━━━━━━━━━
+
+📦 *Product*
+${PRODUCT_NAME}
+
+💰 *PRICE DETAILS*
+Selling Price: ₹${PRODUCT_PRICE}
+Delivery Charge: ₹${DELIVERY_CHARGE}
+*Total: ₹${total}*
+
+━━━━━━━━━━━━━━━━━━
+
+👤 *CUSTOMER DETAILS*
+
+Customer Name:
+${customerName}
+
+Shipping Address:
+${shippingAddress}
+
+Post Office:
+${postOffice}
+
+PIN Code:
+${pinCode}
+
+District:
+${district}
+
+━━━━━━━━━━━━━━━━━━
+
+Please confirm my order.`;
+
+
+
+        /*
+           ENCODE MESSAGE
+        */
+
+        const encodedMessage =
+            encodeURIComponent(message);
+
+
+        /*
+           WHATSAPP LINK
+        */
+
+        const whatsappURL =
+            `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+
+        /*
+           OPEN WHATSAPP
+        */
+
+        window.open(
+            whatsappURL,
+            "_blank"
+        );
+
+    });
+
+
+/* ==========================================
+   PIN CODE VALIDATION
+========================================== */
+
+document
+    .getElementById("pinCode")
+    .addEventListener("input", function() {
+
+        this.value =
+            this.value.replace(/\D/g, "");
+
+    });
+
+
+/* ==========================================
+   ESCAPE KEY FOR LIGHTBOX
+========================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            closeLightbox();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
