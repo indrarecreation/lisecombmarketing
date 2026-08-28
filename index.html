@@ -1,1982 +1,313 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>WOODCRAFT | Premium Handmade Wood</title>
-
-<meta
-    name="description"
-    content="Premium handmade wooden product. Pay with UPI and order directly through WhatsApp."
->
+<meta name="description" content="Premium handmade wooden product with UPI payment and WhatsApp ordering.">
 
 <style>
-
-/* =========================================================
-   RESET
-========================================================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background:#f5efe6;
-    color:#2d1b10;
-    line-height:1.6;
-}
-
-:root{
-    --dark:#30190d;
-    --dark2:#452716;
-    --brown:#75482d;
-    --brown2:#a56b43;
-    --gold:#c99a4c;
-    --cream:#f5efe6;
-    --cream2:#eee1d0;
-    --white:#ffffff;
-    --green:#19a951;
-    --purple:#673ab7;
-    --border:#dfd1c1;
-}
-
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:15px 6%;
-
-    color:white;
-    background:rgba(48,25,13,.97);
-
-    backdrop-filter:blur(12px);
-
-    box-shadow:
-        0 5px 20px rgba(0,0,0,.12);
-}
-
-.logo{
-    font-size:24px;
-    font-weight:900;
-    letter-spacing:1px;
-}
-
-.logo span{
-    color:var(--gold);
-}
-
-.header-button{
-    color:white;
-    text-decoration:none;
-
-    padding:9px 18px;
-
-    border:1px solid rgba(255,255,255,.35);
-    border-radius:50px;
-
-    font-size:14px;
-    font-weight:bold;
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-    min-height:88vh;
-
-    display:grid;
-    grid-template-columns:1fr 1fr;
-
-    gap:60px;
-    align-items:center;
-
-    padding:70px 7%;
-
-    background:
-        radial-gradient(
-            circle at 80% 20%,
-            rgba(201,154,76,.22),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #faf6ef,
-            #e9dac8
-        );
-}
-
-.hero-content{
-    max-width:620px;
-}
-
-.badge{
-    display:inline-block;
-
-    padding:7px 15px;
-
-    background:var(--dark);
-    color:white;
-
-    border-radius:50px;
-
-    font-size:11px;
-    font-weight:bold;
-    letter-spacing:1.5px;
-
-    margin-bottom:20px;
-}
-
-.hero h1{
-    font-size:clamp(44px,6vw,78px);
-
-    line-height:.98;
-
-    letter-spacing:-3px;
-
-    margin-bottom:25px;
-}
-
-.hero h1 span{
-    color:var(--brown2);
-}
-
-.hero-description{
-    color:#68584b;
-
-    font-size:18px;
-
-    max-width:550px;
-
-    margin-bottom:30px;
-}
-
-.hero-buttons{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-}
-
-.primary-button,
-.secondary-button{
-    display:inline-block;
-
-    padding:15px 27px;
-
-    border-radius:50px;
-
-    text-decoration:none;
-
-    font-weight:bold;
-
-    transition:.25s;
-}
-
-.primary-button{
-    background:var(--dark);
-    color:white;
-
-    box-shadow:
-        0 12px 25px rgba(48,25,13,.2);
-}
-
-.primary-button:hover{
-    transform:translateY(-3px);
-}
-
-.secondary-button{
-    border:1px solid #c5b39e;
-    color:var(--dark);
-    background:rgba(255,255,255,.5);
-}
-
-.secondary-button:hover{
-    background:white;
-}
-
-
-/* =========================================================
-   HERO PRODUCT
-========================================================= */
-
-.hero-image-container{
-    position:relative;
-}
-
-.hero-image-container img{
-    width:100%;
-    height:570px;
-
-    object-fit:cover;
-
-    border-radius:32px;
-
-    box-shadow:
-        0 25px 60px rgba(47,27,15,.2);
-}
-
-.hero-price{
-    position:absolute;
-
-    right:-15px;
-    bottom:30px;
-
-    background:var(--dark);
-    color:white;
-
-    padding:17px 23px;
-
-    border-radius:18px;
-
-    box-shadow:
-        0 15px 35px rgba(0,0,0,.2);
-}
-
-.hero-price small{
-    display:block;
-
-    opacity:.65;
-
-    font-size:10px;
-}
-
-.hero-price strong{
-    font-size:23px;
-}
-
-
-/* =========================================================
-   GENERAL SECTIONS
-========================================================= */
-
-section{
-    padding:90px 7%;
-}
-
-.section-heading{
-    text-align:center;
-
-    max-width:680px;
-
-    margin:0 auto 50px;
-}
-
-.section-heading h2{
-    font-size:43px;
-
-    line-height:1.1;
-
-    margin-bottom:12px;
-}
-
-.section-heading p{
-    color:#756659;
-}
-
-
-/* =========================================================
-   PRODUCT SECTION
-========================================================= */
-
-.product-section{
-    background:white;
-}
-
-.product-container{
-    max-width:1200px;
-
-    margin:auto;
-
-    display:grid;
-
-    grid-template-columns:
-        1.05fr
-        .95fr;
-
-    gap:60px;
-
-    align-items:start;
-}
-
-
-/* =========================================================
-   GALLERY
-========================================================= */
-
-.gallery{
-    position:sticky;
-    top:100px;
-}
-
-.main-product-image{
-    width:100%;
-    height:570px;
-
-    object-fit:cover;
-
-    border-radius:25px;
-
-    cursor:zoom-in;
-
-    box-shadow:
-        0 18px 45px rgba(47,27,15,.16);
-}
-
-.thumbnail-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:10px;
-
-    margin-top:12px;
-}
-
-.thumbnail{
-    width:100%;
-    height:85px;
-
-    object-fit:cover;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    border:3px solid transparent;
-
-    transition:.2s;
-}
-
-.thumbnail:hover,
-.thumbnail.active{
-    border-color:var(--brown2);
-}
-
-
-/* =========================================================
-   PRODUCT DETAILS
-========================================================= */
-
-.product-title{
-    font-size:42px;
-
-    line-height:1.08;
-
-    margin-bottom:10px;
-}
-
-.rating{
-    color:var(--gold);
-
-    font-size:20px;
-
-    margin-bottom:18px;
-}
-
-.product-description{
-    color:#6d5d50;
-
-    margin-bottom:25px;
-}
-
-.features{
-    display:grid;
-
-    gap:10px;
-
-    margin-bottom:25px;
-}
-
-.feature{
-    padding:13px 15px;
-
-    background:#f7f3ed;
-
-    border-radius:12px;
-
-    font-size:14px;
-}
-
-
-/* =========================================================
-   PRICE BREAKDOWN
-========================================================= */
-
-.price-box{
-    background:#f4ece2;
-
-    padding:22px;
-
-    border-radius:20px;
-
-    margin-bottom:25px;
-}
-
-.price-row{
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin:8px 0;
-
-    color:#68594d;
-}
-
-.price-row.total{
-    border-top:1px solid #d5c3ae;
-
-    padding-top:15px;
-
-    margin-top:15px;
-
-    color:var(--dark);
-
-    font-size:22px;
-
-    font-weight:900;
-}
-
-
-/* =========================================================
-   ORDER BOX
-========================================================= */
-
-.order-box{
-    border:1px solid var(--border);
-
-    padding:25px;
-
-    border-radius:22px;
-
-    background:white;
-
-    box-shadow:
-        0 10px 35px rgba(48,25,13,.06);
-}
-
-.order-box h3{
-    font-size:26px;
-
-    margin-bottom:3px;
-}
-
-.order-subtitle{
-    color:#817368;
-
-    font-size:13px;
-
-    margin-bottom:20px;
-}
-
-.form-group{
-    margin-bottom:15px;
-}
-
-.form-group label{
-    display:block;
-
-    font-size:13px;
-
-    font-weight:800;
-
-    margin-bottom:6px;
-}
-
-.form-group input,
-.form-group textarea{
-    width:100%;
-
-    padding:13px 14px;
-
-    border:1px solid #d9ccbe;
-
-    background:#fcfaf7;
-
-    border-radius:10px;
-
-    outline:none;
-
-    font-family:inherit;
-
-    font-size:15px;
-}
-
-.form-group textarea{
-    min-height:90px;
-
-    resize:vertical;
-}
-
-.form-group input:focus,
-.form-group textarea:focus{
-    border-color:var(--brown2);
-
-    box-shadow:
-        0 0 0 3px rgba(165,107,67,.1);
-}
-
-.two-column{
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:12px;
-}
-
-.continue-button{
-    width:100%;
-
-    padding:16px;
-
-    background:var(--dark);
-
-    color:white;
-
-    border:0;
-
-    border-radius:12px;
-
-    font-size:16px;
-
-    font-weight:900;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-.continue-button:hover{
-    transform:translateY(-2px);
-}
-
-
-/* =========================================================
-   PAYMENT AREA
-========================================================= */
-
-.payment-area{
-    display:none;
-
-    margin-top:25px;
-
-    padding:25px;
-
-    border:2px solid #dfd1c1;
-
-    border-radius:20px;
-
-    background:#faf7f2;
-
-    text-align:center;
-}
-
-.payment-area.show{
-    display:block;
-}
-
-.payment-area h3{
-    font-size:26px;
-
-    margin-bottom:5px;
-}
-
-.payment-description{
-    color:#75675c;
-
-    font-size:14px;
-}
-
-.payment-total{
-    font-size:34px;
-
-    font-weight:900;
-
-    color:var(--dark);
-
-    margin:12px 0 20px;
-}
-
-
-/* =========================================================
-   QR
-========================================================= */
-
-.qr-container{
-    display:flex;
-
-    justify-content:center;
-
-    margin:10px 0 18px;
-}
-
-.qr-image{
-    width:240px;
-    height:240px;
-
-    object-fit:contain;
-
-    background:white;
-
-    padding:10px;
-
-    border-radius:15px;
-
-    border:1px solid #ddd;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.08);
-}
-
-
-/* =========================================================
-   UPI ID
-========================================================= */
-
-.upi-box{
-    background:white;
-
-    padding:14px;
-
-    border-radius:12px;
-
-    margin-bottom:15px;
-}
-
-.upi-label{
-    color:#75675c;
-
-    font-size:12px;
-}
-
-.upi-id{
-    color:var(--brown);
-
-    font-size:18px;
-
-    font-weight:900;
-
-    word-break:break-all;
-
-    margin:3px 0 7px;
-}
-
-.copy-button{
-    border:1px solid #cdbca8;
-
-    background:white;
-
-    padding:7px 14px;
-
-    border-radius:30px;
-
-    cursor:pointer;
-
-    font-weight:bold;
-}
-
-
-/* =========================================================
-   UPI PAY BUTTON
-========================================================= */
-
-.upi-pay-button{
-    display:block;
-
-    width:100%;
-
-    padding:16px;
-
-    margin-bottom:12px;
-
-    background:var(--purple);
-
-    color:white;
-
-    border-radius:12px;
-
-    text-decoration:none;
-
-    font-weight:900;
-}
-
-
-/* =========================================================
-   PAID BUTTON
-========================================================= */
-
-.paid-button{
-    width:100%;
-
-    padding:16px;
-
-    background:var(--green);
-
-    color:white;
-
-    border:0;
-
-    border-radius:12px;
-
-    font-size:16px;
-
-    font-weight:900;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-.paid-button:hover{
-    transform:translateY(-2px);
-}
-
-.payment-warning{
-    margin-top:15px;
-
-    font-size:12px;
-
-    color:#74675c;
-}
-
-
-/* =========================================================
-   SUCCESS MESSAGE
-========================================================= */
-
-.success-message{
-    display:none;
-
-    margin-top:18px;
-
-    padding:15px;
-
-    border-radius:12px;
-
-    background:#e8f8ee;
-
-    color:#176b37;
-
-    font-size:13px;
-
-    font-weight:bold;
-}
-
-.success-message.show{
-    display:block;
-}
-
-
-/* =========================================================
-   TRUST
-========================================================= */
-
-.trust-section{
-    background:var(--dark);
-
-    color:white;
-}
-
-.trust-section .section-heading p{
-    color:rgba(255,255,255,.65);
-}
-
-.trust-grid{
-    max-width:1100px;
-
-    margin:auto;
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:20px;
-}
-
-.trust-card{
-    text-align:center;
-
-    padding:30px 20px;
-
-    border:1px solid rgba(255,255,255,.12);
-
-    border-radius:20px;
-}
-
-.trust-icon{
-    font-size:35px;
-
-    margin-bottom:10px;
-}
-
-.trust-card h3{
-    margin-bottom:6px;
-}
-
-.trust-card p{
-    color:rgba(255,255,255,.65);
-
-    font-size:14px;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer{
-    background:#211209;
-
-    color:white;
-
-    text-align:center;
-
-    padding:35px 20px;
-}
-
-footer p{
-    margin-top:8px;
-
-    opacity:.55;
-
-    font-size:13px;
-}
-
-
-/* =========================================================
-   LIGHTBOX
-========================================================= */
-
-.lightbox{
-    position:fixed;
-
-    inset:0;
-
-    z-index:3000;
-
-    display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
-
-    background:rgba(0,0,0,.94);
-}
-
-.lightbox.show{
-    display:flex;
-}
-
-.lightbox img{
-    max-width:95%;
-
-    max-height:90vh;
-
-    border-radius:10px;
-}
-
-.close-lightbox{
-    position:absolute;
-
-    right:25px;
-
-    top:12px;
-
-    color:white;
-
-    font-size:45px;
-
-    cursor:pointer;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:900px){
-
-    .hero{
-        grid-template-columns:1fr;
-
-        padding-top:50px;
-    }
-
-    .hero-image-container{
-        order:-1;
-    }
-
-    .product-container{
-        grid-template-columns:1fr;
-    }
-
-    .gallery{
-        position:static;
-    }
-
-    .trust-grid{
-        grid-template-columns:1fr;
-    }
-
-}
-
-@media(max-width:600px){
-
-    header{
-        padding:13px 5%;
-    }
-
-    .logo{
-        font-size:20px;
-    }
-
-    .hero{
-        padding:45px 5%;
-    }
-
-    .hero h1{
-        font-size:45px;
-    }
-
-    .hero-description{
-        font-size:16px;
-    }
-
-    section{
-        padding:65px 5%;
-    }
-
-    .section-heading h2{
-        font-size:33px;
-    }
-
-    .product-title{
-        font-size:34px;
-    }
-
-    .main-product-image{
-        height:360px;
-    }
-
-    .thumbnail{
-        height:70px;
-    }
-
-    .two-column{
-        grid-template-columns:1fr;
-    }
-
-    .hero-image-container img{
-        height:400px;
-    }
-
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#f5efe6;color:#2d1b10;line-height:1.6}
+:root{--dark:#30190d;--brown:#75482d;--brown2:#a56b43;--gold:#c99a4c;--green:#19a951;--purple:#673ab7;--border:#dfd1c1}
+
+header{position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:15px 6%;color:#fff;background:rgba(48,25,13,.97);backdrop-filter:blur(12px);box-shadow:0 5px 20px rgba(0,0,0,.12)}
+.logo{font-size:24px;font-weight:900;letter-spacing:1px}.logo span{color:var(--gold)}
+.header-button{color:#fff;text-decoration:none;padding:9px 18px;border:1px solid rgba(255,255,255,.35);border-radius:50px;font-size:14px;font-weight:bold}
+
+.hero{min-height:88vh;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:70px 7%;background:radial-gradient(circle at 80% 20%,rgba(201,154,76,.22),transparent 30%),linear-gradient(135deg,#faf6ef,#e9dac8)}
+.hero-content{max-width:620px}.badge{display:inline-block;padding:7px 15px;background:var(--dark);color:#fff;border-radius:50px;font-size:11px;font-weight:bold;letter-spacing:1.5px;margin-bottom:20px}
+.hero h1{font-size:clamp(44px,6vw,78px);line-height:.98;letter-spacing:-3px;margin-bottom:25px}.hero h1 span{color:var(--brown2)}
+.hero-description{color:#68584b;font-size:18px;max-width:550px;margin-bottom:30px}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:12px}.primary-button,.secondary-button{display:inline-block;padding:15px 27px;border-radius:50px;text-decoration:none;font-weight:bold;transition:.25s}
+.primary-button{background:var(--dark);color:#fff;box-shadow:0 12px 25px rgba(48,25,13,.2)}.primary-button:hover{transform:translateY(-3px)}
+.secondary-button{border:1px solid #c5b39e;color:var(--dark);background:rgba(255,255,255,.5)}
+.hero-image-container{position:relative}.hero-image-container img{width:100%;height:570px;object-fit:cover;border-radius:32px;box-shadow:0 25px 60px rgba(47,27,15,.2)}
+.hero-price{position:absolute;right:-15px;bottom:30px;background:var(--dark);color:#fff;padding:17px 23px;border-radius:18px;box-shadow:0 15px 35px rgba(0,0,0,.2)}
+.hero-price small{display:block;opacity:.65;font-size:10px}.hero-price strong{font-size:23px}
+
+section{padding:90px 7%}.section-heading{text-align:center;max-width:680px;margin:0 auto 50px}.section-heading h2{font-size:43px;line-height:1.1;margin-bottom:12px}.section-heading p{color:#756659}
+.product-section{background:#fff}.product-container{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:start}
+.gallery{position:sticky;top:100px}.main-product-image{width:100%;height:570px;object-fit:cover;border-radius:25px;cursor:zoom-in;box-shadow:0 18px 45px rgba(47,27,15,.16)}
+.thumbnail-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}.thumbnail{width:100%;height:85px;object-fit:cover;border-radius:12px;cursor:pointer;border:3px solid transparent;transition:.2s}.thumbnail:hover,.thumbnail.active{border-color:var(--brown2)}
+.product-title{font-size:42px;line-height:1.08;margin-bottom:10px}.rating{color:var(--gold);font-size:20px;margin-bottom:18px}.product-description{color:#6d5d50;margin-bottom:25px}
+.features{display:grid;gap:10px;margin-bottom:25px}.feature{padding:13px 15px;background:#f7f3ed;border-radius:12px;font-size:14px}
+.price-box{background:#f4ece2;padding:22px;border-radius:20px;margin-bottom:25px}.price-row{display:flex;justify-content:space-between;align-items:center;margin:8px 0;color:#68594d}.price-row.total{border-top:1px solid #d5c3ae;padding-top:15px;margin-top:15px;color:var(--dark);font-size:22px;font-weight:900}
+.order-box{border:1px solid var(--border);padding:25px;border-radius:22px;background:#fff;box-shadow:0 10px 35px rgba(48,25,13,.06)}.order-box h3{font-size:26px;margin-bottom:3px}.order-subtitle{color:#817368;font-size:13px;margin-bottom:20px}
+.form-group{margin-bottom:15px}.form-group label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}.form-group input,.form-group textarea{width:100%;padding:13px 14px;border:1px solid #d9ccbe;background:#fcfaf7;border-radius:10px;outline:none;font-family:inherit;font-size:15px}.form-group textarea{min-height:90px;resize:vertical}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--brown2);box-shadow:0 0 0 3px rgba(165,107,67,.1)}.two-column{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.continue-button{width:100%;padding:16px;background:var(--dark);color:#fff;border:0;border-radius:12px;font-size:16px;font-weight:900;cursor:pointer}
+
+.payment-area{display:none;margin-top:25px;padding:25px;border:2px solid #dfd1c1;border-radius:20px;background:#faf7f2;text-align:center}.payment-area.show{display:block}.payment-area h3{font-size:26px;margin-bottom:5px}.payment-description{color:#75675c;font-size:14px}.payment-total{font-size:34px;font-weight:900;color:var(--dark);margin:12px 0 20px}
+.qr-container{display:flex;justify-content:center;margin:10px 0 18px}.qr-image{width:240px;height:240px;object-fit:contain;background:#fff;padding:10px;border-radius:15px;border:1px solid #ddd;box-shadow:0 8px 25px rgba(0,0,0,.08)}
+.upi-box{background:#fff;padding:14px;border-radius:12px;margin-bottom:15px}.upi-label{color:#75675c;font-size:12px}.upi-id{color:var(--brown);font-size:18px;font-weight:900;word-break:break-all;margin:3px 0 7px}.copy-button{border:1px solid #cdbca8;background:#fff;padding:7px 14px;border-radius:30px;cursor:pointer;font-weight:bold}
+.upi-pay-button{display:block;width:100%;padding:16px;margin-bottom:12px;background:var(--purple);color:#fff;border-radius:12px;text-decoration:none;font-weight:900}.paid-button{width:100%;padding:16px;background:var(--green);color:#fff;border:0;border-radius:12px;font-size:16px;font-weight:900;cursor:pointer}
+.payment-warning{margin-top:15px;font-size:12px;color:#74675c}.success-message{display:none;margin-top:18px;padding:15px;border-radius:12px;background:#e8f8ee;color:#176b37;font-size:13px;font-weight:bold}.success-message.show{display:block}
+
+.trust-section{background:var(--dark);color:#fff}.trust-section .section-heading p{color:rgba(255,255,255,.65)}.trust-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.trust-card{text-align:center;padding:30px 20px;border:1px solid rgba(255,255,255,.12);border-radius:20px}.trust-icon{font-size:35px;margin-bottom:10px}.trust-card h3{margin-bottom:6px}.trust-card p{color:rgba(255,255,255,.65);font-size:14px}
+footer{background:#211209;color:#fff;text-align:center;padding:35px 20px}footer p{margin-top:8px;opacity:.55;font-size:13px}
+.lightbox{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.94)}.lightbox.show{display:flex}.lightbox img{max-width:95%;max-height:90vh;border-radius:10px}.close-lightbox{position:absolute;right:25px;top:12px;color:#fff;font-size:45px;cursor:pointer}
+
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:50px}.hero-image-container{order:-1}.product-container{grid-template-columns:1fr}.gallery{position:static}.trust-grid{grid-template-columns:1fr}}
+@media(max-width:600px){header{padding:13px 5%}.logo{font-size:20px}.hero{padding:45px 5%}.hero h1{font-size:45px}.hero-description{font-size:16px}section{padding:65px 5%}.section-heading h2{font-size:33px}.product-title{font-size:34px}.main-product-image{height:360px}.thumbnail{height:70px}.two-column{grid-template-columns:1fr}.hero-image-container img{height:400px}}
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =========================================================
-     HEADER
-========================================================= -->
-
 <header>
-
-    <div class="logo">
-        WOOD<span>CRAFT</span>
-    </div>
-
-    <a
-        href="#order"
-        class="header-button"
-    >
-        Order Now
-    </a>
-
+    <div class="logo">WOOD<span>CRAFT</span></div>
+    <a href="#order" class="header-button">Order Now</a>
 </header>
 
-
-<!-- =========================================================
-     HERO
-========================================================= -->
-
 <section class="hero">
-
     <div class="hero-content">
-
-        <div class="badge">
-            HANDCRAFTED • PREMIUM WOOD
-        </div>
-
-        <h1>
-            Natural wood.<br>
-            <span>Beautifully made.</span>
-        </h1>
-
-        <p class="hero-description">
-
-            Discover our premium handcrafted wooden product.
-            Made with care, natural character and timeless style.
-
-        </p>
-
+        <div class="badge">HANDCRAFTED • PREMIUM WOOD</div>
+        <h1>Natural wood.<br><span>Beautifully made.</span></h1>
+        <p class="hero-description">Discover our premium handcrafted wooden product. Made with care, natural character and timeless style.</p>
         <div class="hero-buttons">
-
-            <a
-                href="#product"
-                class="primary-button"
-            >
-                View Product →
-            </a>
-
-            <a
-                href="#order"
-                class="secondary-button"
-            >
-                Buy Now
-            </a>
-
+            <a href="#product" class="primary-button">View Product →</a>
+            <a href="#order" class="secondary-button">Buy Now</a>
         </div>
-
     </div>
-
 
     <div class="hero-image-container">
-
-        <img
-            id="heroImage"
-            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=85"
-            alt="Premium Wooden Product"
-        >
-
-        <div class="hero-price">
-
-            <small>
-                SELLING PRICE
-            </small>
-
-            ₹<strong id="heroPrice">1499</strong>
-
-        </div>
-
+        <img id="heroImage" src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=85" alt="Premium Wooden Product">
+        <div class="hero-price"><small>SELLING PRICE</small>₹<strong id="heroPrice">1499</strong></div>
     </div>
-
 </section>
 
-
-<!-- =========================================================
-     PRODUCT
-========================================================= -->
-
-<section
-    class="product-section"
-    id="product"
->
-
+<section class="product-section" id="product">
     <div class="section-heading">
-
-        <h2>
-            Our Featured Product
-        </h2>
-
-        <p>
-            One product. Carefully crafted.
-            Designed for people who appreciate natural wood.
-        </p>
-
+        <h2>Our Featured Product</h2>
+        <p>One product. Carefully crafted. Designed for people who appreciate natural wood.</p>
     </div>
-
 
     <div class="product-container">
 
-
-        <!-- =================================================
-             GALLERY
-        ================================================== -->
-
         <div class="gallery">
-
-            <img
-                id="mainProductImage"
-                class="main-product-image"
-                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=85"
-                alt="Premium Wooden Product"
-                onclick="openLightbox()"
-            >
-
+            <img id="mainProductImage" class="main-product-image" src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=85" alt="Premium Wooden Product" onclick="openLightbox()">
 
             <div class="thumbnail-grid">
-
-                <img
-                    class="thumbnail active"
-                    src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=700&q=85"
-                    onclick="changeImage(this)"
-                    alt="Product image 1"
-                >
-
-                <img
-                    class="thumbnail"
-                    src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=700&q=85"
-                    onclick="changeImage(this)"
-                    alt="Product image 2"
-                >
-
-                <img
-                    class="thumbnail"
-                    src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=700&q=85"
-                    onclick="changeImage(this)"
-                    alt="Product image 3"
-                >
-
-                <img
-                    class="thumbnail"
-                    src="https://images.unsplash.com/photo-1549497538-303791108f95?auto=format&fit=crop&w=700&q=85"
-                    onclick="changeImage(this)"
-                    alt="Product image 4"
-                >
-
+                <img class="thumbnail active" src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=700&q=85" onclick="changeImage(this)" alt="Product image 1">
+                <img class="thumbnail" src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=700&q=85" onclick="changeImage(this)" alt="Product image 2">
+                <img class="thumbnail" src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=700&q=85" onclick="changeImage(this)" alt="Product image 3">
+                <img class="thumbnail" src="https://images.unsplash.com/photo-1549497538-303791108f95?auto=format&fit=crop&w=700&q=85" onclick="changeImage(this)" alt="Product image 4">
             </div>
-
         </div>
-
-
-        <!-- =================================================
-             PRODUCT DETAILS
-        ================================================== -->
 
         <div>
-
-            <h2 class="product-title">
-
-                Premium Handmade
-                Wooden Product
-
-            </h2>
-
-
-            <div class="rating">
-                ★★★★★
-            </div>
-
-
-            <p class="product-description">
-
-                Beautifully handcrafted using carefully selected
-                wood. Every piece has its own natural grain,
-                character and warmth.
-
-            </p>
-
+            <h2 class="product-title">Premium Handmade Wooden Product</h2>
+            <div class="rating">★★★★★</div>
+            <p class="product-description">Beautifully handcrafted using carefully selected wood. Every piece has its own natural grain, character and warmth.</p>
 
             <div class="features">
-
-                <div class="feature">
-                    🪵 <strong>Natural Wood</strong>
-                    — Beautiful natural grain
-                </div>
-
-                <div class="feature">
-                    ✋ <strong>Handcrafted</strong>
-                    — Made with attention to detail
-                </div>
-
-                <div class="feature">
-                    📦 <strong>Safe Packaging</strong>
-                    — Carefully packed before shipping
-                </div>
-
+                <div class="feature">🪵 <strong>Natural Wood</strong> — Beautiful natural grain</div>
+                <div class="feature">✋ <strong>Handcrafted</strong> — Made with attention to detail</div>
+                <div class="feature">📦 <strong>Safe Packaging</strong> — Carefully packed before shipping</div>
             </div>
-
-
-            <!-- =================================================
-                 PRICE
-            ================================================== -->
 
             <div class="price-box">
-
-                <div class="price-row">
-
-                    <span>
-                        Selling Price
-                    </span>
-
-                    <strong>
-                        ₹<span id="productPrice"></span>
-                    </strong>
-
-                </div>
-
-
-                <div class="price-row">
-
-                    <span>
-                        Delivery Charge
-                    </span>
-
-                    <strong>
-                        ₹<span id="deliveryCharge"></span>
-                    </strong>
-
-                </div>
-
-
-                <div class="price-row total">
-
-                    <span>
-                        Total
-                    </span>
-
-                    <strong>
-                        ₹<span id="totalPrice"></span>
-                    </strong>
-
-                </div>
-
+                <div class="price-row"><span>Selling Price</span><strong>₹<span id="productPrice"></span></strong></div>
+                <div class="price-row"><span>Delivery Charge</span><strong>₹<span id="deliveryCharge"></span></strong></div>
+                <div class="price-row total"><span>Total</span><strong>₹<span id="totalPrice"></span></strong></div>
             </div>
 
-
-            <!-- =================================================
-                 ORDER FORM
-            ================================================== -->
-
-            <div
-                class="order-box"
-                id="order"
-            >
-
-                <h3>
-                    Place Your Order
-                </h3>
-
-                <p class="order-subtitle">
-
-                    Enter your delivery details and continue
-                    to UPI payment.
-
-                </p>
-
+            <div class="order-box" id="order">
+                <h3>Place Your Order</h3>
+                <p class="order-subtitle">Enter your delivery details and continue to UPI payment.</p>
 
                 <form id="orderForm">
-
-
                     <div class="form-group">
-
-                        <label>
-                            Customer Name *
-                        </label>
-
-                        <input
-                            type="text"
-                            id="customerName"
-                            placeholder="Your full name"
-                            required
-                        >
-
+                        <label>Customer Name *</label>
+                        <input type="text" id="customerName" placeholder="Your full name" required>
                     </div>
 
-
                     <div class="form-group">
-
-                        <label>
-                            Shipping Address *
-                        </label>
-
-                        <textarea
-                            id="shippingAddress"
-                            placeholder="House name/number, street, locality"
-                            required
-                        ></textarea>
-
+                        <label>Shipping Address *</label>
+                        <textarea id="shippingAddress" placeholder="House name/number, street, locality" required></textarea>
                     </div>
-
 
                     <div class="two-column">
-
                         <div class="form-group">
-
-                            <label>
-                                Post Office *
-                            </label>
-
-                            <input
-                                type="text"
-                                id="postOffice"
-                                placeholder="Post Office"
-                                required
-                            >
-
+                            <label>Post Office *</label>
+                            <input type="text" id="postOffice" placeholder="Post Office" required>
                         </div>
-
-
                         <div class="form-group">
-
-                            <label>
-                                PIN Code *
-                            </label>
-
-                            <input
-                                type="text"
-                                id="pinCode"
-                                maxlength="6"
-                                placeholder="6-digit PIN"
-                                required
-                            >
-
+                            <label>PIN Code *</label>
+                            <input type="text" id="pinCode" maxlength="6" placeholder="6-digit PIN" required>
                         </div>
-
                     </div>
-
 
                     <div class="form-group">
-
-                        <label>
-                            District *
-                        </label>
-
-                        <input
-                            type="text"
-                            id="district"
-                            placeholder="District"
-                            required
-                        >
-
+                        <label>District *</label>
+                        <input type="text" id="district" placeholder="District" required>
                     </div>
 
-
-                    <button
-                        type="submit"
-                        class="continue-button"
-                    >
-                        Continue to UPI Payment →
-                    </button>
-
+                    <button type="submit" class="continue-button">Continue to UPI Payment →</button>
                 </form>
 
-
-                <!-- =================================================
-                     PAYMENT
-                ================================================== -->
-
-                <div
-                    class="payment-area"
-                    id="paymentArea"
-                >
-
-                    <h3>
-                        Complete Your Payment
-                    </h3>
-
-                    <p class="payment-description">
-
-                        Pay the exact amount using UPI.
-
-                    </p>
-
-
-                    <div class="payment-total">
-
-                        ₹<span id="paymentAmount"></span>
-
-                    </div>
-
-
-                    <!-- QR CODE IS GENERATED BY JAVASCRIPT -->
+                <div class="payment-area" id="paymentArea">
+                    <h3>Complete Your Payment</h3>
+                    <p class="payment-description">Pay the exact amount using UPI.</p>
+                    <div class="payment-total">₹<span id="paymentAmount"></span></div>
 
                     <div class="qr-container">
-
-                        <img
-                            id="qrImage"
-                            class="qr-image"
-                            alt="UPI Payment QR Code"
-                        >
-
+                        <img id="qrImage" class="qr-image" alt="UPI Payment QR Code">
                     </div>
-
-
-                    <!-- UPI ID -->
 
                     <div class="upi-box">
-
-                        <div class="upi-label">
-                            PAY TO UPI ID
-                        </div>
-
-                        <div
-                            class="upi-id"
-                            id="upiIdText"
-                        >
-                        </div>
-
-                        <button
-                            type="button"
-                            class="copy-button"
-                            onclick="copyUPI()"
-                        >
-                            Copy UPI ID
-                        </button>
-
+                        <div class="upi-label">PAY TO UPI ID</div>
+                        <div class="upi-id" id="upiIdText"></div>
+                        <button type="button" class="copy-button" onclick="copyUPI()">Copy UPI ID</button>
                     </div>
 
+                    <a id="upiPayButton" href="#" class="upi-pay-button">💳 Pay ₹<span id="upiButtonAmount"></span> via UPI</a>
 
-                    <!-- OPEN UPI APP -->
+                    <button type="button" class="paid-button" onclick="customerHasPaid()">✅ I HAVE PAID — SEND ORDER TO SELLER</button>
 
-                    <a
-                        id="upiPayButton"
-                        href="#"
-                        class="upi-pay-button"
-                    >
+                    <p class="payment-warning">After completing payment, press the button above. WhatsApp will open with your order details. The seller should verify the payment in the UPI/bank account before dispatch.</p>
 
-                        💳 Pay ₹<span id="upiButtonAmount"></span>
-                        via UPI
-
-                    </a>
-
-
-                    <!-- CUSTOMER CONFIRMATION -->
-
-                    <button
-                        type="button"
-                        class="paid-button"
-                        onclick="customerHasPaid()"
-                    >
-
-                        ✅ I HAVE PAID — SEND ORDER TO SELLER
-
-                    </button>
-
-
-                    <p class="payment-warning">
-
-                        After completing payment, press the button above.
-                        The order will be sent to the seller on WhatsApp.
-                        The seller should verify the payment in their
-                        UPI/bank account before dispatch.
-
-                    </p>
-
-
-                    <div
-                        class="success-message"
-                        id="successMessage"
-                    >
-
-                        Your order message is being prepared.
-                        WhatsApp will open next.
-
-                    </div>
-
+                    <div class="success-message" id="successMessage">Your order message is being prepared. WhatsApp will open next.</div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </section>
-
-
-<!-- =========================================================
-     TRUST
-========================================================= -->
 
 <section class="trust-section">
-
     <div class="section-heading">
-
-        <h2>
-            Simple & Direct
-        </h2>
-
-        <p>
-            Pay with UPI and send your order directly to us.
-        </p>
-
+        <h2>Simple & Direct</h2>
+        <p>Pay with UPI and send your order directly to us.</p>
     </div>
-
 
     <div class="trust-grid">
-
-        <div class="trust-card">
-
-            <div class="trust-icon">
-                🪵
-            </div>
-
-            <h3>
-                Premium Wood
-            </h3>
-
-            <p>
-                Carefully selected natural wood
-                with beautiful character.
-            </p>
-
-        </div>
-
-
-        <div class="trust-card">
-
-            <div class="trust-icon">
-                💳
-            </div>
-
-            <h3>
-                UPI Payment
-            </h3>
-
-            <p>
-                Scan the QR code or pay directly
-                from your UPI app.
-            </p>
-
-        </div>
-
-
-        <div class="trust-card">
-
-            <div class="trust-icon">
-                💬
-            </div>
-
-            <h3>
-                WhatsApp Order
-            </h3>
-
-            <p>
-                Your customer and delivery details
-                reach the seller directly.
-            </p>
-
-        </div>
-
+        <div class="trust-card"><div class="trust-icon">🪵</div><h3>Premium Wood</h3><p>Carefully selected natural wood with beautiful character.</p></div>
+        <div class="trust-card"><div class="trust-icon">💳</div><h3>UPI Payment</h3><p>Scan the QR code or pay directly from your UPI app.</p></div>
+        <div class="trust-card"><div class="trust-icon">💬</div><h3>WhatsApp Order</h3><p>Your customer and delivery details reach the seller directly.</p></div>
     </div>
-
 </section>
 
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
 <footer>
-
-    <div class="logo">
-        WOOD<span>CRAFT</span>
-    </div>
-
-    <p>
-        Handcrafted with care • © 2026 WoodCraft
-    </p>
-
+    <div class="logo">WOOD<span>CRAFT</span></div>
+    <p>Handcrafted with care • © 2026 WoodCraft</p>
 </footer>
 
-
-<!-- =========================================================
-     LIGHTBOX
-========================================================= -->
-
-<div
-    class="lightbox"
-    id="lightbox"
-    onclick="closeLightbox()"
->
-
-    <div
-        class="close-lightbox"
-        onclick="closeLightbox()"
-    >
-        ×
-    </div>
-
-    <img
-        id="lightboxImage"
-        alt="Product image"
-    >
-
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <div class="close-lightbox" onclick="closeLightbox()">×</div>
+    <img id="lightboxImage" alt="Product image">
 </div>
 
-
 <script>
-
 /* =========================================================
-   STORE SETTINGS
-   =========================================================
-
-   EDIT ONLY THIS SECTION
+   BUSINESS SETTINGS — EDIT THESE VALUES
 ========================================================= */
 
+const PRODUCT_NAME = "Premium Handmade Wooden Product";
+const PRODUCT_PRICE = 1499;
+const DELIVERY_CHARGE = 100;
 
-/*
-   YOUR PRODUCT NAME
-*/
+/* Your WhatsApp number. India example: 919876543210
+   Do not use + or spaces. */
+const WHATSAPP_NUMBER = "919876543210";
 
-const PRODUCT_NAME =
-    "Premium Handmade Wooden Lice comb";
+/* YOUR UPI ID */
+const UPI_ID = "indrajithofficialindra-1@okicici";
 
-
-/*
-   YOUR SELLING PRICE
-*/
-
-const PRODUCT_PRICE =
-    69;
-
-
-/*
-   DELIVERY CHARGE
-*/
-
-const DELIVERY_CHARGE =
-    20;
-
-
-/*
-   YOUR WHATSAPP NUMBER
-
-   India example:
-
-   919876543210
-
-   DO NOT add + sign.
-   DO NOT add spaces.
-*/
-
-const WHATSAPP_NUMBER =
-    "917356828624";
-
-
-/*
-   YOUR UPI ID
-
-   Example:
-
-   woodcraft@upi
-
-   Replace this with your REAL UPI ID.
-*/
-
-const UPI_ID =
-    "indrajithofficialindra-1@okicici";
-
-
-/*
-   SELLER / BUSINESS NAME
-
-   This name appears in the UPI payment request.
-*/
-
-const SELLER_NAME =
-    "WoodCraft";
-
+const SELLER_NAME = "WoodCraft";
 
 /* =========================================================
-   AUTOMATIC TOTAL
+   AUTOMATIC CALCULATIONS
 ========================================================= */
 
-const TOTAL =
-    PRODUCT_PRICE + DELIVERY_CHARGE;
+const TOTAL = PRODUCT_PRICE + DELIVERY_CHARGE;
 
-
-/* =========================================================
-   DISPLAY PRICES
-========================================================= */
-
-document.getElementById("heroPrice")
-    .textContent =
-    PRODUCT_PRICE;
-
-
-document.getElementById("productPrice")
-    .textContent =
-    PRODUCT_PRICE;
-
-
-document.getElementById("deliveryCharge")
-    .textContent =
-    DELIVERY_CHARGE;
-
-
-document.getElementById("totalPrice")
-    .textContent =
-    TOTAL;
-
-
-document.getElementById("paymentAmount")
-    .textContent =
-    TOTAL;
-
-
-document.getElementById("upiButtonAmount")
-    .textContent =
-    TOTAL;
-
-
-document.getElementById("upiIdText")
-    .textContent =
-    UPI_ID;
-
+document.getElementById("heroPrice").textContent = PRODUCT_PRICE;
+document.getElementById("productPrice").textContent = PRODUCT_PRICE;
+document.getElementById("deliveryCharge").textContent = DELIVERY_CHARGE;
+document.getElementById("totalPrice").textContent = TOTAL;
+document.getElementById("paymentAmount").textContent = TOTAL;
+document.getElementById("upiButtonAmount").textContent = TOTAL;
+document.getElementById("upiIdText").textContent = UPI_ID;
 
 /* =========================================================
-   UPI PAYMENT LINK
-=========================================================
-
-   This creates a standard UPI payment link.
-
-   On compatible mobile devices it can open
-   the customer's UPI application.
-
+   UPI PAYMENT LINK + QR
 ========================================================= */
 
 const upiLink =
     "upi://pay" +
-
-    "?pa=" +
-    encodeURIComponent(UPI_ID) +
-
-    "&pn=" +
-    encodeURIComponent(SELLER_NAME) +
-
-    "&am=" +
-    encodeURIComponent(TOTAL.toFixed(2)) +
-
+    "?pa=" + encodeURIComponent(UPI_ID) +
+    "&pn=" + encodeURIComponent(SELLER_NAME) +
+    "&am=" + encodeURIComponent(TOTAL.toFixed(2)) +
     "&cu=INR" +
+    "&tn=" + encodeURIComponent(PRODUCT_NAME);
 
-    "&tn=" +
-    encodeURIComponent(PRODUCT_NAME);
+document.getElementById("upiPayButton").href = upiLink;
 
-
-document.getElementById("upiPayButton")
-    .href =
-    upiLink;
-
-
-/* =========================================================
-   GENERATE QR CODE
-=========================================================
-
-   This uses a public QR image service to turn the
-   UPI payment link into a QR code.
-
-   No separate QR image file is required.
-
-========================================================= */
-
-const UPI_ID =
-    "indrajithofficialindra-1@okicici" +
-
+/* QR is generated from YOUR UPI ID and exact total amount. */
+const qrURL =
+    "https://api.qrserver.com/v1/create-qr-code/" +
     "?size=500x500" +
+    "&data=" + encodeURIComponent(upiLink);
 
-    "&data=" +
-    encodeURIComponent(upiLink);
-
-
-document.getElementById("qrImage")
-    .src =
-    qrURL;
-
+document.getElementById("qrImage").src = qrURL;
 
 /* =========================================================
    ORDER FORM
 ========================================================= */
 
-document
-    .getElementById("orderForm")
-    .addEventListener(
-        "submit",
-        function(event){
+document.getElementById("orderForm").addEventListener("submit", function(event){
+    event.preventDefault();
 
-            event.preventDefault();
+    const pin = document.getElementById("pinCode").value.trim();
 
+    if(!/^[0-9]{6}$/.test(pin)){
+        alert("Please enter a valid 6-digit PIN code.");
+        return;
+    }
 
-            /*
-               Check PIN
-            */
+    document.getElementById("paymentArea").classList.add("show");
 
-            const pin =
-                document
-                .getElementById("pinCode")
-                .value
-                .trim();
-
-
-            if(!/^[0-9]{6}$/.test(pin)){
-
-                alert(
-                    "Please enter a valid 6-digit PIN code."
-                );
-
-                return;
-
-            }
-
-
-            /*
-               Show payment
-            */
-
-            document
-                .getElementById("paymentArea")
-                .classList
-                .add("show");
-
-
-            /*
-               Scroll payment into view
-            */
-
-            document
-                .getElementById("paymentArea")
-                .scrollIntoView({
-                    behavior:"smooth",
-                    block:"center"
-                });
-
-        }
-    );
-
+    document.getElementById("paymentArea").scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+});
 
 /* =========================================================
-   COPY UPI ID
+   COPY UPI
 ========================================================= */
 
 function copyUPI(){
-
-    if(
-        navigator.clipboard &&
-        navigator.clipboard.writeText
-    ){
-
-        navigator.clipboard
-            .writeText(UPI_ID)
-            .then(function(){
-
-                alert(
-                    "UPI ID copied: " +
-                    UPI_ID
-                );
-
-            });
-
+    if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(UPI_ID).then(function(){
+            alert("UPI ID copied: " + UPI_ID);
+        }).catch(function(){
+            alert("UPI ID: " + UPI_ID);
+        });
     }else{
-
-        alert(
-            "UPI ID: " +
-            UPI_ID
-        );
-
+        alert("UPI ID: " + UPI_ID);
     }
-
 }
 
-
 /* =========================================================
-   CUSTOMER SAYS PAYMENT IS COMPLETE
+   SEND ORDER TO WHATSAPP
 ========================================================= */
 
 function customerHasPaid(){
 
+    const customerName = document.getElementById("customerName").value.trim();
+    const shippingAddress = document.getElementById("shippingAddress").value.trim();
+    const postOffice = document.getElementById("postOffice").value.trim();
+    const pinCode = document.getElementById("pinCode").value.trim();
+    const district = document.getElementById("district").value.trim();
 
-    /*
-       Get customer details
-    */
+    const orderID = "WC-" + Date.now().toString().slice(-8);
 
-    const customerName =
-        document
-        .getElementById("customerName")
-        .value
-        .trim();
-
-
-    const shippingAddress =
-        document
-        .getElementById("shippingAddress")
-        .value
-        .trim();
-
-
-    const postOffice =
-        document
-        .getElementById("postOffice")
-        .value
-        .trim();
-
-
-    const pinCode =
-        document
-        .getElementById("pinCode")
-        .value
-        .trim();
-
-
-    const district =
-        document
-        .getElementById("district")
-        .value
-        .trim();
-
-
-    /*
-       Simple order number
-    */
-
-    const orderID =
-        "WC-" +
-        Date.now()
-            .toString()
-            .slice(-8);
-
-
-    /*
-       Show message
-    */
-
-    document
-        .getElementById("successMessage")
-        .classList
-        .add("show");
-
-
-    /*
-       Create WhatsApp order
-    */
+    document.getElementById("successMessage").classList.add("show");
 
     const message =
-
 `🛒 *NEW ORDER*
 
 ━━━━━━━━━━━━━━━━━━
@@ -2037,157 +368,64 @@ ${district}
 
 📦 *DELIVERY REQUEST*
 
-Customer has completed the order form
-and claims that the UPI payment has been made.
+Customer has completed the order form and claims that the UPI payment has been made.
 
-Please verify the payment in the seller's
-UPI/bank account before preparing the order.
+Please verify the payment in the seller's UPI/bank account before preparing the order.
 
 Thank you.`;
 
-
-    /*
-       Encode message
-    */
-
-    const encodedMessage =
-        encodeURIComponent(message);
-
-
-    /*
-       Create WhatsApp URL
-    */
-
     const whatsappURL =
         "https://wa.me/" +
-
         WHATSAPP_NUMBER +
-
         "?text=" +
-
-        encodedMessage;
-
-
-    /*
-       Open WhatsApp
-    */
+        encodeURIComponent(message);
 
     setTimeout(function(){
-
-        window.open(
-            whatsappURL,
-            "_blank"
-        );
-
-    },500);
-
+        window.open(whatsappURL, "_blank");
+    }, 500);
 }
 
-
 /* =========================================================
-   IMAGE GALLERY
+   PRODUCT GALLERY
 ========================================================= */
 
 function changeImage(element){
+    document.getElementById("mainProductImage").src = element.src;
 
-    const mainImage =
-        document
-        .getElementById("mainProductImage");
+    document.querySelectorAll(".thumbnail").forEach(function(image){
+        image.classList.remove("active");
+    });
 
-
-    mainImage.src =
-        element.src;
-
-
-    document
-        .querySelectorAll(".thumbnail")
-        .forEach(function(image){
-
-            image.classList
-                .remove("active");
-
-        });
-
-
-    element.classList
-        .add("active");
-
+    element.classList.add("active");
 }
-
 
 /* =========================================================
    LIGHTBOX
 ========================================================= */
 
 function openLightbox(){
+    document.getElementById("lightboxImage").src =
+        document.getElementById("mainProductImage").src;
 
-    const mainImage =
-        document
-        .getElementById("mainProductImage");
-
-
-    document
-        .getElementById("lightboxImage")
-        .src =
-        mainImage.src;
-
-
-    document
-        .getElementById("lightbox")
-        .classList
-        .add("show");
-
+    document.getElementById("lightbox").classList.add("show");
 }
-
 
 function closeLightbox(){
-
-    document
-        .getElementById("lightbox")
-        .classList
-        .remove("show");
-
+    document.getElementById("lightbox").classList.remove("show");
 }
 
+document.addEventListener("keydown", function(event){
+    if(event.key === "Escape") closeLightbox();
+});
 
 /* =========================================================
-   ESCAPE KEY
+   PIN CODE
 ========================================================= */
 
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(event.key === "Escape"){
-
-            closeLightbox();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   PIN CODE INPUT
-========================================================= */
-
-document
-    .getElementById("pinCode")
-    .addEventListener(
-        "input",
-        function(){
-
-            this.value =
-                this.value
-                .replace(/\D/g,"")
-                .slice(0,6);
-
-        }
-    );
-
+document.getElementById("pinCode").addEventListener("input", function(){
+    this.value = this.value.replace(/\D/g,"").slice(0,6);
+});
 </script>
 
 </body>
 </html>
-```
