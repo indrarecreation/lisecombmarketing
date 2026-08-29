@@ -50,9 +50,9 @@ section{padding:90px 7%}.section-heading{text-align:center;max-width:680px;margi
     margin-top:18px;
     padding:22px;
     border-radius:18px;
-    background:#fff8e8;
-    border:1px solid #ead39a;
-    color:#6a4a00;
+    background:#e8f8ee;
+    border:1px solid #b8e5c8;
+    color:#145c30;
     text-align:left;
 }
 .order-placed.show{display:block}
@@ -64,7 +64,7 @@ section{padding:90px 7%}.section-heading{text-align:center;max-width:680px;margi
     justify-content:center;
     margin:0 auto 10px;
     border-radius:50%;
-    background:#c99a4c;
+    background:#19a951;
     color:#fff;
     font-size:30px;
     font-weight:900;
@@ -200,38 +200,34 @@ footer{background:#211209;color:#fff;text-align:center;padding:35px 20px}footer 
                 </form>
 
                 <div class="payment-area" id="paymentArea">
-                    <h3>Complete Your Payment</h3>
-                    <p class="payment-description">Pay the exact amount using UPI.</p>
-                    <p style="margin:10px 0;padding:10px 12px;background:#fff3cd;border:1px solid #ffe08a;border-radius:10px;color:#664d03;font-size:13px;font-weight:700;">
-                        ⚠️ PAYMENT MUST BE VERIFIED BY THE SELLER. This website cannot detect or confirm a UPI payment by itself.
-                    </p>
+                    <h3>Secure Payment</h3>
+                    <p class="payment-description">Your order details are saved first. You will be redirected to secure payment.</p>
                     <div class="payment-total">₹<span id="paymentAmount"></span></div>
 
-                    <div class="qr-container">
-                        <img id="qrImage" class="qr-image" alt="UPI Payment QR Code">
+                    <div style="margin:15px 0;padding:13px 15px;background:#fff3cd;border:1px solid #ffe08a;border-radius:12px;color:#664d03;font-size:13px;text-align:left;">
+                        🔒 <strong>Secure payment verification:</strong>
+                        Your order is confirmed only after the payment gateway reports a successful payment.
+                        Simply clicking a button cannot place an unpaid order.
                     </div>
 
-                    <div class="upi-box">
-                        <div class="upi-label">PAY TO UPI ID</div>
-                        <div class="upi-id" id="upiIdText"></div>
-                        <button type="button" class="copy-button" onclick="copyUPI()">Copy UPI ID</button>
-                    </div>
+                    <button type="button" id="payButton" class="upi-pay-button">
+                        💳 Pay ₹<span id="upiButtonAmount"></span> Securely
+                    </button>
 
-                    <a id="upiPayButton" href="#" class="upi-pay-button">💳 Pay ₹<span id="upiButtonAmount"></span> via UPI</a>
-
-                    <button type="button" class="paid-button" onclick="customerHasPaid()">📲 I HAVE PAID — SEND DETAILS FOR VERIFICATION</button>
+                    <div id="paymentStatus" class="success-message" aria-live="polite"></div>
 
                     <div id="orderPlaced" class="order-placed" aria-live="polite">
                         <div class="order-placed-icon">✓</div>
-                        <h3>PAYMENT VERIFICATION PENDING</h3>
-                        <p>Your order details were sent to the seller. The order is NOT confirmed until the seller verifies the UPI payment.</p>
+                        <h3>ORDER PLACED</h3>
+                        <p>Payment was successfully verified. Your order details have been sent to the seller on WhatsApp.</p>
                         <div class="placed-details" id="placedDetails"></div>
                     </div>
 
-                    <p class="payment-warning">After completing payment, press the button above. WhatsApp will open with your order details. This website cannot verify UPI payments. The order remains pending until the seller confirms receipt in the UPI/bank account.</p>
-
-                    <div class="success-message" id="successMessage">Your order message is being prepared. WhatsApp will open next.</div>
-                </div>
+                    <p class="payment-warning">
+                        If payment fails or is cancelled, your order will remain unconfirmed.
+                        The seller receives the order only after successful payment verification.
+                    </p>
+                </div>                </div>
             </div>
         </div>
     </div>
@@ -260,6 +256,7 @@ footer{background:#211209;color:#fff;text-align:center;padding:35px 20px}footer 
     <img id="lightboxImage" alt="Product image">
 </div>
 
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
 /* =========================================================
    BUSINESS SETTINGS — EDIT THESE VALUES
@@ -269,18 +266,24 @@ const PRODUCT_NAME = "Premium Handmade Wooden Product";
 const PRODUCT_PRICE = 39;
 const DELIVERY_CHARGE = 20;
 
-/* Your WhatsApp number. India example: 919876543210
-   Do not use + or spaces. */
 const WHATSAPP_NUMBER = "7356828624";
-
-/* YOUR UPI ID */
-const UPI_ID = "indrajithofficialindra-1@okicici";
-
 const SELLER_NAME = "WoodCraftkollam";
 
-/* =========================================================
-   AUTOMATIC CALCULATIONS
-========================================================= */
+/*
+   SECURITY:
+   Only the Razorpay PUBLIC Key ID belongs in this HTML.
+   NEVER put the Razorpay Key Secret here.
+*/
+const RAZORPAY_KEY_ID = "YOUR_RAZORPAY_KEY_ID";
+
+/*
+   These are your secure server endpoints.
+   Example:
+   https://your-domain.com/api/create-order
+   https://your-domain.com/api/verify-payment
+*/
+const CREATE_ORDER_ENDPOINT = "/api/create-order";
+const VERIFY_PAYMENT_ENDPOINT = "/api/verify-payment";
 
 const TOTAL = PRODUCT_PRICE + DELIVERY_CHARGE;
 
@@ -290,29 +293,6 @@ document.getElementById("deliveryCharge").textContent = DELIVERY_CHARGE;
 document.getElementById("totalPrice").textContent = TOTAL;
 document.getElementById("paymentAmount").textContent = TOTAL;
 document.getElementById("upiButtonAmount").textContent = TOTAL;
-document.getElementById("upiIdText").textContent = UPI_ID;
-
-/* =========================================================
-   UPI PAYMENT LINK + QR
-========================================================= */
-
-const upiLink =
-    "upi://pay" +
-    "?pa=" + encodeURIComponent(UPI_ID) +
-    "&pn=" + encodeURIComponent(SELLER_NAME) +
-    "&am=" + encodeURIComponent(TOTAL.toFixed(2)) +
-    "&cu=INR" +
-    "&tn=" + encodeURIComponent(PRODUCT_NAME);
-
-document.getElementById("upiPayButton").href = upiLink;
-
-/* QR is generated from YOUR UPI ID and exact total amount. */
-const qrURL =
-    "https://api.qrserver.com/v1/create-qr-code/" +
-    "?size=500x500" +
-    "&data=" + encodeURIComponent(upiLink);
-
-document.getElementById("qrImage").src = qrURL;
 
 /* =========================================================
    ORDER FORM
@@ -337,92 +317,197 @@ document.getElementById("orderForm").addEventListener("submit", function(event){
 });
 
 /* =========================================================
-   COPY UPI
+   SECURE RAZORPAY PAYMENT
 ========================================================= */
 
-function copyUPI(){
-    if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(UPI_ID).then(function(){
-            alert("UPI ID copied: " + UPI_ID);
-        }).catch(function(){
-            alert("UPI ID: " + UPI_ID);
-        });
-    }else{
-        alert("UPI ID: " + UPI_ID);
-    }
-}
+document.getElementById("payButton").addEventListener("click", async function(){
 
-/* =========================================================
-   SEND ORDER TO WHATSAPP
-========================================================= */
-
-function customerHasPaid(){
-
-    const customerName =
-        document.getElementById("customerName").value.trim();
-
-    const shippingAddress =
-        document.getElementById("shippingAddress").value.trim();
-
-    const postOffice =
-        document.getElementById("postOffice").value.trim();
-
-    const pinCode =
-        document.getElementById("pinCode").value.trim();
-
-    const district =
-        document.getElementById("district").value.trim();
+    const customerName = document.getElementById("customerName").value.trim();
+    const shippingAddress = document.getElementById("shippingAddress").value.trim();
+    const postOffice = document.getElementById("postOffice").value.trim();
+    const pinCode = document.getElementById("pinCode").value.trim();
+    const district = document.getElementById("district").value.trim();
 
     if(!customerName || !shippingAddress || !postOffice || !pinCode || !district){
         alert("Please complete all customer and shipping details first.");
         return;
     }
 
-    /*
-       SECURITY NOTE:
-       A normal HTML/JavaScript page cannot verify whether a UPI payment
-       actually reached the seller's bank account.
+    if(RAZORPAY_KEY_ID === "YOUR_RAZORPAY_KEY_ID"){
+        alert("Payment gateway is not configured yet. Add your Razorpay Key ID and connect the secure backend.");
+        return;
+    }
 
-       Therefore this button NEVER marks the order as paid or placed.
-       It only sends the customer's claim to WhatsApp for verification.
-    */
+    const payButton = document.getElementById("payButton");
+    const status = document.getElementById("paymentStatus");
 
-    const orderID =
-        "WC-" + Date.now().toString().slice(-8);
+    payButton.disabled = true;
+    payButton.textContent = "Creating secure payment...";
+    status.classList.add("show");
+    status.textContent = "Connecting to secure payment gateway...";
 
-    /* Show PAYMENT VERIFICATION PENDING — never "ORDER PLACED". */
+    try {
+        const createResponse = await fetch(CREATE_ORDER_ENDPOINT, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                product: PRODUCT_NAME,
+                customerName,
+                shippingAddress,
+                postOffice,
+                pinCode,
+                district
+            })
+        });
+
+        if(!createResponse.ok){
+            throw new Error("Could not create payment order.");
+        }
+
+        const order = await createResponse.json();
+
+        if(!order.id || !order.amount){
+            throw new Error("Invalid payment order received from server.");
+        }
+
+        const options = {
+            key: RAZORPAY_KEY_ID,
+            amount: order.amount,
+            currency: order.currency || "INR",
+            name: SELLER_NAME,
+            description: PRODUCT_NAME,
+            order_id: order.id,
+            prefill: {name: customerName},
+            notes: {
+                customer_name: customerName,
+                post_office: postOffice,
+                pin_code: pinCode,
+                district: district
+            },
+            theme: {color: "#30190d"},
+
+            handler: async function(response){
+                status.textContent = "Payment received by gateway. Verifying securely...";
+
+                try {
+                    const verifyResponse = await fetch(VERIFY_PAYMENT_ENDPOINT, {
+                        method: "POST",
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify({
+                            razorpay_order_id: response.razorpay_order_id,
+                            razorpay_payment_id: response.razorpay_payment_id,
+                            razorpay_signature: response.razorpay_signature,
+                            customerName,
+                            shippingAddress,
+                            postOffice,
+                            pinCode,
+                            district
+                        })
+                    });
+
+                    const result = await verifyResponse.json();
+
+                    if(!verifyResponse.ok || !result.verified){
+                        throw new Error("Payment verification failed.");
+                    }
+
+                    showConfirmedOrder(
+                        result.orderId || response.razorpay_order_id,
+                        response.razorpay_payment_id,
+                        customerName,
+                        shippingAddress,
+                        postOffice,
+                        pinCode,
+                        district
+                    );
+
+                } catch(error) {
+                    status.textContent =
+                        "Payment verification is pending. Please contact the seller before trying to pay again.";
+                    status.style.background = "#fff3cd";
+                    status.style.color = "#664d03";
+                    payButton.disabled = false;
+                    payButton.textContent = "💳 Pay ₹" + TOTAL + " Securely";
+                }
+            },
+
+            modal: {
+                ondismiss: function(){
+                    status.classList.remove("show");
+                    payButton.disabled = false;
+                    payButton.textContent = "💳 Pay ₹" + TOTAL + " Securely";
+                }
+            }
+        };
+
+        const razorpay = new Razorpay(options);
+
+        razorpay.on("payment.failed", function(){
+            status.classList.add("show");
+            status.textContent =
+                "❌ Payment failed or was cancelled. Your order has NOT been placed.";
+            status.style.background = "#fdecec";
+            status.style.color = "#8b1e1e";
+            payButton.disabled = false;
+            payButton.textContent = "💳 Pay ₹" + TOTAL + " Securely";
+        });
+
+        razorpay.open();
+
+    } catch(error) {
+        status.classList.add("show");
+        status.textContent = "Unable to start secure payment. Please try again.";
+        status.style.background = "#fdecec";
+        status.style.color = "#8b1e1e";
+        payButton.disabled = false;
+        payButton.textContent = "💳 Pay ₹" + TOTAL + " Securely";
+    }
+});
+
+/* =========================================================
+   CONFIRMED ORDER — ONLY AFTER SERVER VERIFICATION
+========================================================= */
+
+function showConfirmedOrder(orderID, paymentID, customerName, shippingAddress, postOffice, pinCode, district){
+
     document.getElementById("placedDetails").innerHTML = `
         <div><span>Order ID</span><strong>${escapeHTML(orderID)}</strong></div>
+        <div><span>Payment ID</span><strong>${escapeHTML(paymentID)}</strong></div>
         <div><span>Product</span><strong>${escapeHTML(PRODUCT_NAME)}</strong></div>
         <div><span>Customer</span><strong>${escapeHTML(customerName)}</strong></div>
         <div><span>Address</span><strong>${escapeHTML(shippingAddress)}</strong></div>
         <div><span>Post Office</span><strong>${escapeHTML(postOffice)}</strong></div>
         <div><span>PIN</span><strong>${escapeHTML(pinCode)}</strong></div>
         <div><span>District</span><strong>${escapeHTML(district)}</strong></div>
-        <div><span>Amount Due</span><strong>₹${TOTAL}</strong></div>
-        <div><span>Payment</span><strong>UPI — VERIFICATION PENDING</strong></div>
+        <div><span>Total Paid</span><strong>₹${TOTAL}</strong></div>
+        <div><span>Payment</span><strong>VERIFIED ✓</strong></div>
     `;
+
+    document.getElementById("paymentStatus").classList.add("show");
+    document.getElementById("paymentStatus").textContent =
+        "✅ PAYMENT VERIFIED SUCCESSFULLY.";
+    document.getElementById("paymentStatus").style.background = "#e8f8ee";
+    document.getElementById("paymentStatus").style.color = "#176b37";
 
     document.getElementById("orderPlaced").classList.add("show");
 
-    document.getElementById("successMessage").classList.add("show");
-    document.getElementById("successMessage").textContent =
-        "Details sent to seller. Your order is NOT confirmed until payment is verified.";
-
     const message =
-`🛒 *NEW ORDER — PAYMENT VERIFICATION REQUIRED*
+`🛒 *NEW PAID ORDER — PAYMENT VERIFIED*
 
 ━━━━━━━━━━━━━━━━━━
 
 🆔 *ORDER ID*
 ${orderID}
 
+💳 *PAYMENT ID*
+${paymentID}
+
 📦 *PRODUCT*
 ${PRODUCT_NAME}
 
 ━━━━━━━━━━━━━━━━━━
 
-💰 *PRICE DETAILS*
+💰 *PAYMENT DETAILS*
 
 Selling Price:
 ₹${PRODUCT_PRICE}
@@ -430,24 +515,13 @@ Selling Price:
 Delivery Charge:
 ₹${DELIVERY_CHARGE}
 
-*TOTAL DUE: ₹${TOTAL}*
-
-━━━━━━━━━━━━━━━━━━
-
-💳 *PAYMENT*
+*TOTAL PAID: ₹${TOTAL}*
 
 Payment Method:
-UPI
-
-UPI ID:
-${UPI_ID}
+Razorpay / UPI
 
 Payment Status:
-*CUSTOMER CLAIMS PAYMENT COMPLETED*
-
-⚠️ *PAYMENT IS NOT VERIFIED BY THIS WEBSITE.*
-
-⚠️ *PLEASE CHECK YOUR UPI/BANK ACCOUNT AND CONFIRM THAT ₹${TOTAL} WAS ACTUALLY RECEIVED BEFORE ACCEPTING OR DISPATCHING THIS ORDER.*
+*✅ VERIFIED*
 
 ━━━━━━━━━━━━━━━━━━
 
@@ -474,17 +548,17 @@ ${district}
 
 ━━━━━━━━━━━━━━━━━━
 
-⏳ *STATUS: PAYMENT VERIFICATION PENDING*
+✅ *PAYMENT VERIFIED — ORDER CONFIRMED*
 
-Do not dispatch until the payment is verified in the seller's UPI/bank account.
+The payment was successfully verified by the payment server.
+
+Please arrange delivery.
 
 Thank you.`;
 
     const whatsappURL =
-        "https://wa.me/" +
-        WHATSAPP_NUMBER +
-        "?text=" +
-        encodeURIComponent(message);
+        "https://wa.me/" + WHATSAPP_NUMBER +
+        "?text=" + encodeURIComponent(message);
 
     window.open(whatsappURL, "_blank");
 
@@ -493,6 +567,10 @@ Thank you.`;
         block:"center"
     });
 }
+
+/* =========================================================
+   SECURITY HELPER
+========================================================= */
 
 function escapeHTML(value){
     return String(value)
