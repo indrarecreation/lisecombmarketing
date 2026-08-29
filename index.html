@@ -200,16 +200,20 @@ footer{background:#211209;color:#fff;text-align:center;padding:35px 20px}footer 
                 </form>
 
                 <div class="payment-area" id="paymentArea">
-                    <h3>Complete Your Payment</h3>
-                    <p class="payment-description">Pay the exact amount using UPI.</p>
+                    <h3>Pay with Any UPI App</h3>
+                    <p class="payment-description">Scan the QR code with Google Pay, PhonePe, Paytm, BHIM or any other UPI app.</p>
                     <p style="margin:10px 0;padding:10px 12px;background:#fff3cd;border:1px solid #ffe08a;border-radius:10px;color:#664d03;font-size:13px;font-weight:700;">
                         ⚠️ PAYMENT MUST BE VERIFIED BY THE SELLER. This website cannot detect or confirm a UPI payment by itself.
                     </p>
                     <div class="payment-total">₹<span id="paymentAmount"></span></div>
 
                     <div class="qr-container">
-                        <img id="qrImage" class="qr-image" alt="UPI Payment QR Code">
+                        <img id="qrImage" class="qr-image" alt="Scan to pay with any UPI app">
                     </div>
+
+                    <p style="margin:0 0 12px;font-size:13px;font-weight:800;color:#4b4038;">
+                        📱 SCAN THIS QR WITH ANY UPI APP
+                    </p>
 
                     <div class="upi-box">
                         <div class="upi-label">PAY TO UPI ID</div>
@@ -217,7 +221,11 @@ footer{background:#211209;color:#fff;text-align:center;padding:35px 20px}footer 
                         <button type="button" class="copy-button" onclick="copyUPI()">Copy UPI ID</button>
                     </div>
 
-                    <a id="upiPayButton" href="#" class="upi-pay-button">💳 Pay ₹<span id="upiButtonAmount"></span> via UPI</a>
+                    <p style="margin:10px 0 14px;font-size:12px;color:#75675c;">
+                        If the UPI button does not open an app, use the QR code above. You can scan it from Google Pay or any UPI-enabled app.
+                    </p>
+
+                    <a id="upiPayButton" href="#" class="upi-pay-button">💳 Open UPI App &amp; Pay ₹<span id="upiButtonAmount"></span></a>
 
                     <button type="button" class="paid-button" onclick="customerHasPaid()">📲 I HAVE PAID — SEND DETAILS FOR VERIFICATION</button>
 
@@ -304,9 +312,18 @@ const upiLink =
     "&cu=INR" +
     "&tn=" + encodeURIComponent(PRODUCT_NAME);
 
-document.getElementById("upiPayButton").href = upiLink;
+const upiPayButton = document.getElementById("upiPayButton");
+upiPayButton.href = upiLink;
 
-/* QR is generated from YOUR UPI ID and exact total amount. */
+/* On phones, the standard upi:// URI opens an installed UPI app.
+   On desktop, customers should use the QR code instead. */
+upiPayButton.addEventListener("click", function(){
+    if(!/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)){
+        alert("For the easiest payment on a computer, scan the QR code above using Google Pay, PhonePe, Paytm, BHIM or any UPI app on your phone.");
+    }
+});
+
+/* Standard UPI QR: works with UPI-enabled apps that support UPI QR scanning. */
 const qrURL =
     "https://api.qrserver.com/v1/create-qr-code/" +
     "?size=500x500" +
