@@ -50,9 +50,9 @@ section{padding:90px 7%}.section-heading{text-align:center;max-width:680px;margi
     margin-top:18px;
     padding:22px;
     border-radius:18px;
-    background:#e8f8ee;
-    border:1px solid #b8e5c8;
-    color:#145c30;
+    background:#fff8e8;
+    border:1px solid #ead39a;
+    color:#6a4a00;
     text-align:left;
 }
 .order-placed.show{display:block}
@@ -64,7 +64,7 @@ section{padding:90px 7%}.section-heading{text-align:center;max-width:680px;margi
     justify-content:center;
     margin:0 auto 10px;
     border-radius:50%;
-    background:#19a951;
+    background:#c99a4c;
     color:#fff;
     font-size:30px;
     font-weight:900;
@@ -202,6 +202,9 @@ footer{background:#211209;color:#fff;text-align:center;padding:35px 20px}footer 
                 <div class="payment-area" id="paymentArea">
                     <h3>Complete Your Payment</h3>
                     <p class="payment-description">Pay the exact amount using UPI.</p>
+                    <p style="margin:10px 0;padding:10px 12px;background:#fff3cd;border:1px solid #ffe08a;border-radius:10px;color:#664d03;font-size:13px;font-weight:700;">
+                        ⚠️ PAYMENT MUST BE VERIFIED BY THE SELLER. This website cannot detect or confirm a UPI payment by itself.
+                    </p>
                     <div class="payment-total">₹<span id="paymentAmount"></span></div>
 
                     <div class="qr-container">
@@ -216,16 +219,16 @@ footer{background:#211209;color:#fff;text-align:center;padding:35px 20px}footer 
 
                     <a id="upiPayButton" href="#" class="upi-pay-button">💳 Pay ₹<span id="upiButtonAmount"></span> via UPI</a>
 
-                    <button type="button" class="paid-button" onclick="customerHasPaid()">✅ I HAVE PAID — SEND ORDER TO SELLER</button>
+                    <button type="button" class="paid-button" onclick="customerHasPaid()">📲 I HAVE PAID — SEND DETAILS FOR VERIFICATION</button>
 
                     <div id="orderPlaced" class="order-placed" aria-live="polite">
                         <div class="order-placed-icon">✓</div>
-                        <h3>ORDER PLACED</h3>
-                        <p>Your order details have been prepared and sent to the seller on WhatsApp.</p>
+                        <h3>PAYMENT VERIFICATION PENDING</h3>
+                        <p>Your order details were sent to the seller. The order is NOT confirmed until the seller verifies the UPI payment.</p>
                         <div class="placed-details" id="placedDetails"></div>
                     </div>
 
-                    <p class="payment-warning">After completing payment, press the button above. WhatsApp will open with your order details. The seller should verify the payment in the UPI/bank account before dispatch.</p>
+                    <p class="payment-warning">After completing payment, press the button above. WhatsApp will open with your order details. This website cannot verify UPI payments. The order remains pending until the seller confirms receipt in the UPI/bank account.</p>
 
                     <div class="success-message" id="successMessage">Your order message is being prepared. WhatsApp will open next.</div>
                 </div>
@@ -375,10 +378,19 @@ function customerHasPaid(){
         return;
     }
 
+    /*
+       SECURITY NOTE:
+       A normal HTML/JavaScript page cannot verify whether a UPI payment
+       actually reached the seller's bank account.
+
+       Therefore this button NEVER marks the order as paid or placed.
+       It only sends the customer's claim to WhatsApp for verification.
+    */
+
     const orderID =
         "WC-" + Date.now().toString().slice(-8);
 
-    /* Display ORDER PLACED immediately on the website. */
+    /* Show PAYMENT VERIFICATION PENDING — never "ORDER PLACED". */
     document.getElementById("placedDetails").innerHTML = `
         <div><span>Order ID</span><strong>${escapeHTML(orderID)}</strong></div>
         <div><span>Product</span><strong>${escapeHTML(PRODUCT_NAME)}</strong></div>
@@ -387,19 +399,18 @@ function customerHasPaid(){
         <div><span>Post Office</span><strong>${escapeHTML(postOffice)}</strong></div>
         <div><span>PIN</span><strong>${escapeHTML(pinCode)}</strong></div>
         <div><span>District</span><strong>${escapeHTML(district)}</strong></div>
-        <div><span>Total Paid</span><strong>₹${TOTAL}</strong></div>
-        <div><span>Payment</span><strong>UPI — Verify before dispatch</strong></div>
+        <div><span>Amount Due</span><strong>₹${TOTAL}</strong></div>
+        <div><span>Payment</span><strong>UPI — VERIFICATION PENDING</strong></div>
     `;
 
     document.getElementById("orderPlaced").classList.add("show");
 
     document.getElementById("successMessage").classList.add("show");
     document.getElementById("successMessage").textContent =
-        "ORDER PLACED. Your order details are being sent to the seller on WhatsApp.";
+        "Details sent to seller. Your order is NOT confirmed until payment is verified.";
 
-    /* Prepare the complete WhatsApp message for the seller. */
     const message =
-`🛒 *NEW ORDER — ORDER PLACED*
+`🛒 *NEW ORDER — PAYMENT VERIFICATION REQUIRED*
 
 ━━━━━━━━━━━━━━━━━━
 
@@ -419,7 +430,7 @@ Selling Price:
 Delivery Charge:
 ₹${DELIVERY_CHARGE}
 
-*TOTAL: ₹${TOTAL}*
+*TOTAL DUE: ₹${TOTAL}*
 
 ━━━━━━━━━━━━━━━━━━
 
@@ -434,7 +445,9 @@ ${UPI_ID}
 Payment Status:
 *CUSTOMER CLAIMS PAYMENT COMPLETED*
 
-⚠️ *PLEASE VERIFY PAYMENT IN YOUR UPI/BANK APP BEFORE DISPATCH.*
+⚠️ *PAYMENT IS NOT VERIFIED BY THIS WEBSITE.*
+
+⚠️ *PLEASE CHECK YOUR UPI/BANK ACCOUNT AND CONFIRM THAT ₹${TOTAL} WAS ACTUALLY RECEIVED BEFORE ACCEPTING OR DISPATCHING THIS ORDER.*
 
 ━━━━━━━━━━━━━━━━━━
 
@@ -461,11 +474,9 @@ ${district}
 
 ━━━━━━━━━━━━━━━━━━
 
-✅ *ORDER PLACED*
+⏳ *STATUS: PAYMENT VERIFICATION PENDING*
 
-The customer has completed the payment step and submitted the order.
-
-Please verify the payment and arrange delivery.
+Do not dispatch until the payment is verified in the seller's UPI/bank account.
 
 Thank you.`;
 
@@ -475,17 +486,14 @@ Thank you.`;
         "?text=" +
         encodeURIComponent(message);
 
-    /* Open seller WhatsApp automatically. */
     window.open(whatsappURL, "_blank");
 
-    /* Bring the confirmation into view. */
     document.getElementById("orderPlaced").scrollIntoView({
         behavior:"smooth",
         block:"center"
     });
 }
 
-/* Prevent customer-entered HTML from being inserted into the confirmation. */
 function escapeHTML(value){
     return String(value)
         .replace(/&/g, "&amp;")
