@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wander Stories — Travel Memory Magazine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="toast" class="toast"></div>
+<header class="site-header"><a class="brand" href="index.html"><span class="brand-mark">W</span>Wander Stories</a>
+<nav><a href="#journeys">Journeys</a><a href="#about">About</a><button class="ghost-btn" id="loginBtn">Rider Login</button><a href="admin.html">Admin</a></nav></header>
+<main>
+<section class="hero"><div class="hero-overlay"></div><div class="hero-content"><p class="eyebrow">A PRIVATE JOURNAL OF THE ROAD</p><h1>Some roads are<br><em>never forgotten.</em></h1><p class="hero-copy">Every ride becomes a cinematic memory — photographs, people, routes, stories and the little moments worth keeping.</p><div class="hero-actions"><a class="primary-btn" href="#journeys">Explore Journeys ↗</a></div></div>
+<div class="hero-meta"><div><strong id="tripCount">—</strong><span>JOURNEYS</span></div><div><strong id="kmCount">—</strong><span>KM REMEMBERED</span></div><div><strong id="riderCount">—</strong><span>RIDERS</span></div></div></section>
+<section class="intro section" id="about"><div><p class="eyebrow">OUR STORY</p><h2>Not a gallery.<br><em>A memory.</em></h2></div><p class="intro-copy">Every trip is its own digital magazine — a beginning, a road, a collection of faces, unexpected turns and stories that photographs cannot tell alone.</p></section>
+<section class="journeys section" id="journeys"><div class="section-head"><div><p class="eyebrow">THE ARCHIVE</p><h2>Our journeys</h2></div><span class="archive-count">LIVE ARCHIVE</span></div><div class="journey-grid" id="journeyGrid"><p>Loading journeys…</p></div></section>
+<section class="quote-section"><div class="quote-inner"><span class="quote-mark">“</span><blockquote>The destination becomes a place.<br>The journey becomes a story.</blockquote><p>— WANDER STORIES</p></div></section>
+</main><footer class="footer"><span>WANDER STORIES © 2026</span><span>Made for the miles we never want to forget.</span></footer>
+
+<div class="modal" id="loginModal"><div class="modal-card"><button class="modal-close" data-close>×</button><p class="eyebrow">PRIVATE JOURNEY</p><h2>Rider access</h2><p class="muted">Enter your rider ID and password.</p><form id="loginForm"><label>Rider ID<input id="riderId" required autocomplete="username"></label><label>Password<input id="riderPassword" required type="password" autocomplete="current-password"></label><button class="primary-btn full">Enter the archive</button></form></div></div>
+<script src="config.js"></script><script src="api.js"></script><script src="app.js"></script>
+</body></html>
